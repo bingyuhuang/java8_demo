@@ -1,5 +1,7 @@
 package com.eight.demo.chap6;
 
+import com.eight.demo.util.ToolUtils;
+
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.Collector;
@@ -125,11 +127,13 @@ public class PrimeNumbersCollector
                 .collect(new PrimeNumbersCollector());
     }
 
-    public static void main(String ... args) {
-//        System.out.println("Numbers partitioned in prime and non-prime: " + partitionPrimes(100));
-//        System.out.println("Numbers partitioned in prime and non-prime: " + partitionPrimesWithCustomCollector(5));
+    public static void main(String[] args) {
 
+        System.out.println("partitionPrime->Fastest execution done in " +
+                ToolUtils.measureMethod(PrimeNumbersCollector::partitionPrime,1_000_000) + " ms");
 
+        System.out.println("WithCustomCollector->Fastest execution done in " +
+                ToolUtils.measureMethod(PrimeNumbersCollector::partitionPrimesWithCustomCollector,1_000_000) + " ms");
     }
 
 
