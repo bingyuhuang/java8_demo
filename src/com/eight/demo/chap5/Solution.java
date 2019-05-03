@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Page98:交易员和交易问题
  */
-public class Solution<T> {
+public class Solution {
     /**
      * 1.查找2011年所有的交易，按交易额排序(低到高)
      */
@@ -93,7 +93,7 @@ public class Solution<T> {
     }
 
 
-    public void output(T collection) {
+    public <T> void output(T collection) {
         if (collection instanceof Collection) {
             ((Collection) collection).stream().forEach(System.out::println);
         } else {
@@ -125,7 +125,7 @@ public class Solution<T> {
                 new Transaction(alan, 2012, 950)
         );
 
-        Solution<Object> solution = new Solution<>();
+        Solution solution = new Solution();
 
         solution.output(sortTransactionIn2011(transactions));
 
