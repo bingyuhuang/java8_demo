@@ -1,15 +1,10 @@
 package com.eight.demo.chap7;
 
-import com.eight.demo.chap6.PrimeNumbersCollector;
 import com.eight.demo.util.ToolUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 /**

@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.partitioningBy;
 /**
  * 1.定义Collector类的签名Collector<Integer, Map<Boolean, List<Integer>>, Map<Boolean, List<Integer>>>
  * Integer:流中元素类型
- *  Map<Boolean, List<Integer>>：累积器类型
+ * Map<Boolean, List<Integer>>：累积器类型
  */
 public class PrimeNumbersCollector
         implements Collector<Integer, Map<Boolean, List<Integer>>, Map<Boolean, List<Integer>>> {
@@ -51,15 +51,15 @@ public class PrimeNumbersCollector
         int i = 0;
         for (A item : list) {
             if (!p.test(item)) { //这个地方被坑了半天：主要还是理解这个返回逻辑当，质数中出现大于候选人平方根的数，则返回
-                return list.subList(0,i);
+                return list.subList(0, i);
             }
             i++;
         }
         return list;
     }
 
-    public static boolean isPrime(List<Integer> primes, int candidate){
-        int candidateRoot = (int)Math.sqrt(candidate);
+    public static boolean isPrime(List<Integer> primes, int candidate) {
+        int candidateRoot = (int) Math.sqrt(candidate);
         return takeWhile(primes, i -> i <= candidateRoot)
                 .stream()
                 .noneMatch(p -> candidate % p == 0);
@@ -73,8 +73,8 @@ public class PrimeNumbersCollector
      */
     @Override
     public Supplier<Map<Boolean, List<Integer>>> supplier() {
-        return () -> new HashMap<Boolean, List<Integer>>(){{
-            put(true,new ArrayList<Integer>());
+        return () -> new HashMap<Boolean, List<Integer>>() {{
+            put(true, new ArrayList<Integer>());
             put(false, new ArrayList<Integer>());
         }};
     }
@@ -96,6 +96,7 @@ public class PrimeNumbersCollector
     /**
      * 让收集器并行工作，将两个部分累加器合并(次算法本身顺序，不能并行)
      * 留空 或者最好的抛UnsupportedOperationException异常
+     *
      * @return
      */
     @Override
@@ -119,6 +120,7 @@ public class PrimeNumbersCollector
 
     /**
      * 自定义收集器
+     *
      * @param candidate
      * @return
      */
@@ -130,10 +132,10 @@ public class PrimeNumbersCollector
     public static void main(String[] args) {
 
         System.out.println("partitionPrime->Fastest execution done in " +
-                ToolUtils.measureMethod(PrimeNumbersCollector::partitionPrime,1_000_000) + " ms");
+                ToolUtils.measureMethod(PrimeNumbersCollector::partitionPrime, 1_000_000) + " ms");
 
         System.out.println("WithCustomCollector->Fastest execution done in " +
-                ToolUtils.measureMethod(PrimeNumbersCollector::partitionPrimesWithCustomCollector,1_000_000) + " ms");
+                ToolUtils.measureMethod(PrimeNumbersCollector::partitionPrimesWithCustomCollector, 1_000_000) + " ms");
     }
 
 

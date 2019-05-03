@@ -11,7 +11,7 @@ public class ToolUtils {
             long start = System.nanoTime();
             function.apply(n);
             //运行毫秒值
-            long duration = (System.nanoTime() - start) / 1_000_000;
+            long duration = (System.nanoTime() - start);
             //检查此次执行是否为最快的一次
             if (duration < fastest) fastest = duration;
         }

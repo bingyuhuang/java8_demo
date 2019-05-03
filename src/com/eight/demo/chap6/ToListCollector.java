@@ -7,11 +7,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
-import static java.util.stream.Collector.Characteristics.*;
+import static java.util.stream.Collector.Characteristics.CONCURRENT;
+import static java.util.stream.Collector.Characteristics.IDENTITY_FINISH;
 
 public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {
     /**
      * 创建集合操作的起始点
+     *
      * @return
      */
     @Override
@@ -21,6 +23,7 @@ public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {
 
     /**
      * 累积遍历过的项目，原位修改累加器
+     *
      * @return
      */
     @Override
@@ -30,11 +33,12 @@ public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {
 
     /**
      * 修改第一个累加器和第二个累加器合并，返回第一个累加器
+     *
      * @return
      */
     @Override
     public BinaryOperator<List<T>> combiner() {
-        return (list1,list2) -> {
+        return (list1, list2) -> {
             list1.addAll(list2);
             return list1;
         };
@@ -42,6 +46,7 @@ public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {
 
     /**
      * 恒等函数
+     *
      * @return
      */
     @Override
